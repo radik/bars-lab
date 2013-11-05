@@ -13,7 +13,7 @@ describe("Функции для работы со строками:", function()
   });
 
   it("Вызов format без достаточного количества параметров", function() {
-    expect(format("Hello, {0} {1}", "JS")).toThrow(new Error("Invalid arguments count"));
+    expect(function(){format("Hello, {0} {1}", "JS");}).toThrow(new Error("Invalid arguments count"));
   });
 
   // repeat

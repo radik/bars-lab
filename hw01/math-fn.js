@@ -4,10 +4,10 @@
 
 
 /**
- * Задание 0. Создать функцию multiply, перемножающаю два числа, переданных в качестве парамтра.
- * Второй аргумент является необязательным. При его отсутствии возвращается первое число,
- * умноженное само на себя. Если переданные аргументы не являются числами, выбрасывать
- * ошибку "Invalid arguments" (используйте throw new Error("Invalid arguments")).
+ * Задание 0. Создать функцию multiply, перемножающаю два числа, 
+ * переданных в качестве аргументов. Если переданные аргументы не являются
+ * конечными числами, выбрасывать ошибку "Invalid arguments" 
+ * (используйте throw new Error("Invalid arguments")).
  *
  * @example
  * var result = multiply(1,2); // 2
@@ -15,11 +15,28 @@
  * @param {Number} a
  * Первое число для перемножения.
  * 
- * @param {Number} [b]
+ * @param {Number} b
  * Второе число для перемножения (необязательный параметр).
  * 
  * @return {Number} Факториал числа.
  */
+
+ function multiply(a, b){
+ 	
+ 	function isNumber(x){
+ 		return (typeof x === "number") && !isNaN(x) && isFinite(x);
+ 	}
+
+ 	if(arguments.length < 2){
+ 		throw new Error("Invalid arguments");
+ 	}
+
+ 	if(!isNumber(a) || !isNumber(b)){
+ 		throw new Error("Invalid arguments");
+ 	}
+
+ 	return a*b;
+ }
 
 
 /**

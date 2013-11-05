@@ -5,16 +5,18 @@ describe("Математические функции:", function() {
     expect(multiply).toBeDefined();
   });
 
-  it("Вызов multiply на правильных параметрах", function() {
-    expect(multiply(5)).toBe(25);
+  it("Результат вызова multiply(5, 6) должен быть равен 30", function() {
     expect(multiply(5, 6)).toBe(30);
   });
 
-  it("Неправильный вызов multiply", function() {
-    expect(multiply()).toThrow(new Error("Invalid arguments"));
-    expect(multiply("1","2")).toThrow(new Error("Invalid arguments"));
-    expect(multiply(1, NaN)).toThrow(new Error("Invalid arguments"));
-    expect(multiply(null, 3)).toThrow(new Error("Invalid arguments"));
+  it("Вызов multiply без аргументов должен выбрасывать ошибку \"Invalid arguments\"", function() {
+    expect(function(){multiply();}).toThrow(new Error("Invalid arguments"));
+  });
+
+  it("Вызов multiply на не числовых аргументах должен выбрасывать ошибку \"Invalid arguments\"", function() {
+    expect(function(){multiply("1","2");}).toThrow(new Error("Invalid arguments"));
+    expect(function(){multiply(1, NaN);}).toThrow(new Error("Invalid arguments"));
+    expect(function(){multiply(null, 3);}).toThrow(new Error("Invalid arguments"));
   });
 
   // factorial
