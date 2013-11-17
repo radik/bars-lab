@@ -1,4 +1,4 @@
-/**
+	/**
  * Результатом выполнения этих заданий будет набор функций-утилит
  * для работы со строками.
  */
@@ -25,6 +25,21 @@
  * @return {String} отформатированная строка.
  */
 
+function format(str){
+	var reg = /\{\d\}*/;
+	var newStr = "";
+	if(!reg.test(str)){
+		return "without wildcards";
+	}
+	if(str.split(reg).length != arguments.length){
+		throw new Error("Invalid arguments count");
+	}
+	for(i = 0; i < arguments.length-1; i++){
+		newStr += str.split(reg)[i] + arguments[i+1]; 
+	}
+	return newStr;
+}
+
 /**
  * Задание 2. Создать функцию repeat.
  *
@@ -44,6 +59,36 @@
  * @return {String} Строка с повотрениями.
  */
 
+ function repeat(str, count){	
+ 	var newStr = "";
+ 	console.log(arguments.length);
+ 	if(arguments.length > 3){
+ 		throw new Error("Invalid arguments count");
+ 	}if(arguments.length ==3){
+	 	if(typeof arguments[0] !== "string" || typeof arguments[2] !== "string"){
+	 		throw new Error("Invalid arguments");
+	 	}
+ 	}
+ 	if((typeof arguments[1] !== "number") && isNaN(arguments[1]) && !isFinite(arguments[1])){
+ 		throw new Error("Invalid arguments");
+ 	}
+ 	if(arguments.length > 2){
+ 		for(var i = 0; i < count; i++){
+ 			if(i == count - 1){
+ 				newStr += str;
+ 			}else{
+ 				newStr += str + arguments[2];
+ 			}
+ 		}
+ 		return newStr;
+ 	}else{
+	 	for(var i = 0; i < count; i++){
+	 		newStr += str;
+	 	}
+ 	}
+ 	return newStr;
+ }
+
 /**
  * Задание 3. Создать функцию toGetParams, формирующую из
  * объекта строку параметров для GET-запроса.
@@ -56,6 +101,28 @@
  *
  * @return {String} строка параметров.
  */
+
+ function toGetParams(obj){
+ 	if(typeof obj !== "object"){
+ 		throw new Error("Invalid arguments");
+ 	}
+ 	var str = "";
+ 	var counter = 0;
+ 	for(var key in obj){
+ 		counter++;
+ 	}
+ 	var i = counter-1;
+ 	counter = 0;
+ 	for(var key in obj){
+ 		if(i == counter){
+ 			str += key + "="+obj[key];
+ 		}else{
+ 			str += key + "="+obj[key]+"&";
+ 		}
+ 		counter++;
+ 	}
+ 	return str;
+ }
 
 /**
  * Задание 4. Создать функцию formatUrl, формирующую из базового url и объекта
@@ -72,6 +139,25 @@
  *
  * @return {String} сформированный url.
  */
+
+ function formatUrl(url, obj){
+ 	var newUrl = url+"?";
+ 	var counter = 0;
+ 	for(var key in obj){
+ 		counter++;
+ 	}
+ 	var i = counter-1;
+ 	counter = 0;
+ 	for(var key in obj){
+ 		if(i == counter){
+ 			newUrl += key + "="+obj[key];
+ 		}else{
+ 			newUrl += key + "="+obj[key]+"&";
+ 		}
+ 		counter++;
+ 	}
+ 	return newUrl;
+ }
 
 /**
  * Задание 5. Создать функцию startsWith, возвращающая true, если строка, переданная
@@ -91,6 +177,17 @@
  * @return {Boolean} Результат проверки.
  */
 
+ 	function startsWith(str1, str2){
+ 		if(typeof str1 !== "string" || typeof str2 !== "string"){
+ 			throw new Error("Invalid arguments");
+ 		}
+ 		if(arguments.length > 2){
+ 			throw new Error("Invalid arguments count")
+ 		}
+ 		var reg = new RegExp("^"+str2);
+ 		return reg.test(str1);
+ 	}
+
 /**
  * Задание 6. Создать функцию endsWith, возвращающая true, если строка, переданная
  * в качестве первого аргумента оканчивается на строку, переданную в качестве второго аргумента,
@@ -108,3 +205,14 @@
  *
  * @return {Boolean} Результат проверки.
  */
+
+ function endsWith(str1, str2){
+ 	if(typeof str1 !== "string" || typeof str2 !== "string"){
+ 			throw new Error("Invalid arguments");
+ 	}
+ 	if(arguments.length > 2){
+ 		throw new Error("Invalid arguments count")
+ 	}
+ 	var reg = new RegExp(str2+"$");
+ 	return reg.test(str1);
+ }
