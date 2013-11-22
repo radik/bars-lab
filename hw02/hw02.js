@@ -22,6 +22,9 @@ function Warrior(name, level){
   this.level = level;
 }
 
+function Warrior(){
+}
+
 /**
  * Задание 2. Добавить метод attack нашему воину.
  * Метод возвращает уровень воина умноженный на коэффициент 0.1.
@@ -36,7 +39,11 @@ function Warrior(name, level){
  * @return {Number} Урон, наносимой атакой.
  */
 Warrior.prototype.attack = function() {
-  // Ваш код здесь...
+ 
+ var A = new Warrior();
+ 
+ A.
+ 
 };
 
 /**
