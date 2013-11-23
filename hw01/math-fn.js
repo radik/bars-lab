@@ -20,7 +20,24 @@
  * 
  * @return {Number} Факториал числа.
  */
-
+function factorial(a){
+    if(!(typeof a === "number") || isNaN(a)){
+        throw new Error("Invalid arguments");
+    }
+        if(a <= 0){
+                return 1;
+            }
+            return(a*(factorial(a-1))) ;
+        }
+function nfib(a){
+    if((!typeof a === "number") || isNaN(a)){
+        throw new Error("Invalid arguments");
+    }
+            if(a <= 3){
+                return 1;
+            }
+            return(nfib(a-1)+nfib(a-2));
+}
  function multiply(a, b){
  	
  	function isNumber(x){
@@ -37,7 +54,7 @@
 
  	return a*b;
  }
-
+	
 
 /**
  * Задание 1. Создать функцию factorial для подсчета факториала. Функция в качестве параметра
@@ -50,8 +67,7 @@
  * @param {Number} n
  * Число, для которого считается факториал.
  * 
- * @return {Number} факториал числа.
- */
+ * @return {Number} факториал числа. 
 
 /**
  * Задание 2. Создать функцию nfib для подсчета n-го числа Фибоначчи
@@ -67,3 +83,6 @@
  *
  * @return {Number} Число Фибоначчи.
  */
+
+ 
+ 

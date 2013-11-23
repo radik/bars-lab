@@ -10,7 +10,8 @@
  * в строке-шаблоне. Возможно здесь пригодятся регулярные выражения 
  * см. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
  * Если передаваемых параметров не хватает (см. пример ниже), то выбрасывается исключение
- * (для этого используйте след. код: throw new Error("Invalid arguments count")).
+ * (для этого используйте след. код: 
+	throw new Error("Invalid arguments");).
  *
  * @example
  * var txt = format('Hello, {0} {1}', 'JS', 'World'); // значение txt равно 'Hello, JS World'
@@ -24,7 +25,18 @@
  *
  * @return {String} отформатированная строка.
  */
-
+function format(string){
+    if(typeof string === "string"){
+		for(i = 0; string.indexOf("{" + i + "}") > -1; i++){
+			if(i >= arguments.length - 1){
+				throw new Error("Invalid arguments");
+			}
+			string = string.replace("{" + i + "}", arguments[i+1]);
+		}
+		return string;
+	}
+	throw new Error("Invalid arguments");
+}
 /**
  * Задание 2. Создать функцию repeat.
  *
@@ -43,7 +55,17 @@
  *
  * @return {String} Строка с повотрениями.
  */
-
+function repeat(a, b, c) {
+    var h = '';
+    c = (c != null && typeof c === "string")?c:'';
+    if(typeof a === "string" && typeof  b === "number" &&  !isNaN(b)){
+        for(i = 0; i < b - 1; i++){
+            h += a + c;
+        }
+        return  (b > 0)?h + a: h ;
+    }
+    throw new Error("Invalid arguments");
+}
 /**
  * Задание 3. Создать функцию toGetParams, формирующую из
  * объекта строку параметров для GET-запроса.
@@ -56,7 +78,15 @@
  *
  * @return {String} строка параметров.
  */
-
+ function toGetParams(obj){
+         if (typeof obj === "object"){
+                 var h = '';
+                 for(var key in obj){
+                        h+= key + '=' + obj[key] + "&";
+                 }
+                 return (h.length > 0)?h.substring(0, h.length - 1) : h;
+         }throw new Error("Illegal Exception");
+}
 /**
  * Задание 4. Создать функцию formatUrl, формирующую из базового url и объекта
  * строку GET-запроса.
@@ -72,7 +102,12 @@
  *
  * @return {String} сформированный url.
  */
-
+function formatUrl(a,b){
+    if(typeof a === "string"){
+        return a + '?' + toGetParams(b);
+    }
+    throw new Error("Illegal Exception");
+}
 /**
  * Задание 5. Создать функцию startsWith, возвращающая true, если строка, переданная
  * в качестве первого аргумента начинается со строки, переданной в качестве второго аргумента,
@@ -90,7 +125,14 @@
  *
  * @return {Boolean} Результат проверки.
  */
-
+function startsWith(str, prefix){
+    if(typeof str === "string" || typeof suffix === "string"){
+        var a = new String(str);
+        var b = new String(prefix);
+        return (a.length < b.length)?false:(a.indexOf(b) == 0)
+    }
+    throw new Error("Invalid arguments");
+}
 /**
  * Задание 6. Создать функцию endsWith, возвращающая true, если строка, переданная
  * в качестве первого аргумента оканчивается на строку, переданную в качестве второго аргумента,
@@ -108,3 +150,11 @@
  *
  * @return {Boolean} Результат проверки.
  */
+function endsWith(str, suffix){
+    if(typeof str === "string" || typeof suffix === "string"){
+            var a = new String(str);
+            var b = new String(suffix);
+        return (a.length < b.length)?false:(a.lastIndexOf(b) == a.length - b.length)
+    }
+    throw new Error("Invalid arguments");
+}
