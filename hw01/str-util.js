@@ -25,15 +25,16 @@
  *
  * @return {String} отформатированная строка.
  */
-function format(string){
-    if(typeof string === "string"){
-		for(i = 0; string.indexOf("{" + i + "}") > -1; i++){
+function format(token){
+	var i;
+    if(typeof token === "string"){
+		for(i = 0; token.indexOf("{" + i + "}") > -1; i++){
 			if(i >= arguments.length - 1){
 				throw new Error("Invalid arguments");
 			}
-			string = string.replace("{" + i + "}", arguments[i+1]);
+			token = token.replace("{" + i + "}", arguments[i+1]);
 		}
-		return string;
+		return token;
 	}
 	throw new Error("Invalid arguments");
 }
@@ -55,14 +56,14 @@ function format(string){
  *
  * @return {String} Строка с повотрениями.
  */
-function repeat(a, b, c) {
-    var h = '';
-    c = (c != null && typeof c === "string")?c:'';
-    if(typeof a === "string" && typeof  b === "number" &&  !isNaN(b)){
-        for(i = 0; i < b - 1; i++){
-            h += a + c;
+function repeat(str, count, sep) {
+    var i, result = '';
+    sep = (sep != null && typeof sep === "string")?sep:'';
+    if(typeof str === "string" && typeof  count === "number" &&  !isNaN(count)){
+        for(i = 0; i < count - 1; i++){
+            result += str + sep;
         }
-        return  (b > 0)?h + a: h ;
+        return  (count > 0)?result + str: result ;
     }
     throw new Error("Invalid arguments");
 }
@@ -80,11 +81,11 @@ function repeat(a, b, c) {
  */
  function toGetParams(obj){
          if (typeof obj === "object"){
-                 var h = '';
-                 for(var key in obj){
-                        h+= key + '=' + obj[key] + "&";
+                 var key, result = '';
+                 for(key in obj){
+                        result+= key + '=' + obj[key] + "&";
                  }
-                 return (h.length > 0)?h.substring(0, h.length - 1) : h;
+                 return (result.length > 0)?result.substring(0, result.length - 1) : result;
          }throw new Error("Illegal Exception");
 }
 /**
@@ -102,9 +103,9 @@ function repeat(a, b, c) {
  *
  * @return {String} сформированный url.
  */
-function formatUrl(a,b){
-    if(typeof a === "string"){
-        return a + '?' + toGetParams(b);
+function formatUrl(url, obj){
+    if(typeof url === "string"){
+        return url + '?' + toGetParams(obj);
     }
     throw new Error("Illegal Exception");
 }

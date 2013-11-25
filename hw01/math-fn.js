@@ -20,23 +20,23 @@
  * 
  * @return {Number} Факториал числа.
  */
-function factorial(a){
-    if(!(typeof a === "number") || isNaN(a)){
+function factorial(n){
+    if(!(typeof n === "number") || isNaN(n)){
         throw new Error("Invalid arguments");
     }
-        if(a <= 0){
+        if(n <= 0){
                 return 1;
             }
-            return(a*(factorial(a-1))) ;
+            return(n*(factorial(n-1))) ;
         }
-function nfib(a){
-    if((!typeof a === "number") || isNaN(a)){
+function nfib(n){
+    if((!typeof n === "number") || isNaN(n)){
         throw new Error("Invalid arguments");
     }
-            if(a <= 3){
+            if(n <= 3){
                 return 1;
             }
-            return(nfib(a-1)+nfib(a-2));
+            return(nfib(n-1)+nfib(n-2));
 }
  function multiply(a, b){
  	
