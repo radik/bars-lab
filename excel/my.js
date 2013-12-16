@@ -10,7 +10,7 @@ function newTable(){
 }
 function newRow(a){
     var i,table,string;
-    var table = document.getElementById("t" + a);
+    table = document.getElementById("t" + a);
     string = new String("<tr>");
     for(i = 0; i < cellsAndRows[a][0]; i++){
         string += cellStart + cellsAndRows[a][1] + cellEnd;
@@ -20,14 +20,14 @@ function newRow(a){
     table.innerHTML += string;
 }
 function newColumn(a){
-    var i;
-    var rows = document.getElementById("t" + a).getElementsByTagName('TR');
+    var i,tds,rows;
+    rows = document.getElementById("t" + a).getElementsByTagName('TR');
     for(i = 0; i < rows.length;i++){
         rows[i].innerHTML += cellStart + cellsAndRows[a][1] + cellEnd;
         cellsAndRows[a][1]++;
     }
     cellsAndRows[a][0]++;
-    var tds = document.getElementById("t" + a).getElementsByTagName('TD');
+    tds = document.getElementById("t" + a).getElementsByTagName('TD');
     for(i = 0; i < tds.length; i++){
         tds[i].setAttribute("width", 100/cellsAndRows[a][0]);
     }
