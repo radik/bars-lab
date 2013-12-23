@@ -64,9 +64,9 @@
  */
 
 function repeat(str, count, sep){
-	var res = ''
+	var res = ""
 	if(!sep)
-		sep = '';
+		sep = "";
 	for(var i = 0; i < count; i++){
 		res += str + ((i<count-1)?sep:'');
 	}

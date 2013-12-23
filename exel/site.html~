@@ -1,0 +1,41 @@
+<html>
+	<head>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<style>
+			body {
+				padding: 0px;
+				margin: 0px;
+			}
+			#wrap1 {
+				position: relative;
+				float: right;
+				right: 50%;
+				min-width: 350px;
+			}
+			#wrap2 {
+				position: relative;
+				float: left;
+				left: 50%;
+				background-color: #696969;
+				min-width: 1000px;
+				height: 100%;
+				-webkit-box-shadow: 0px 0px 20px;
+				border-radius: 6px;
+				margin: 18px 0;
+				padding: 6px;
+			}
+			#menu {
+				width: 100%
+			}
+		</style>
+	</head>
+	<body >
+		<div id="wrap1">
+			<div id="wrap2">
+				<div id="menu">
+					<h1>Finagin Igor</h1>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>	

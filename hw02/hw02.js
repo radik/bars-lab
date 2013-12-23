@@ -17,9 +17,15 @@
  * @param {Number} level Уровень воина.
  */
 function Warrior(name, level){
-  // Ваш код здесь...
-  this.name = name;
-  this.level = level;
+    this.name = name;
+    this.level = level;
+    this.getCode = function(){
+        if(this instanceof Jedi) {
+            return 'Нет волнения — есть покой...';
+        } else {
+            return 'Спокойствие — ложь, есть только страсть...';
+        }
+    }
 }
 
 /**
@@ -36,7 +42,7 @@ function Warrior(name, level){
  * @return {Number} Урон, наносимой атакой.
  */
 Warrior.prototype.attack = function() {
-  // Ваш код здесь...
+  return this.level*0.1;
 };
 
 /**
@@ -47,14 +53,17 @@ Warrior.prototype.attack = function() {
  * Кодекс джедая: "Нет волнения — есть покой...".
  * Кодекс ситха: "Спокойствие — ложь, есть только страсть..."
  */
-
+Jedi.prototype = new Warrior();
+Sith.prototype = new Warrior();
 /**
  * Создает экземпляр джедая
  * @param {String} name Имя джедая.
  * @param {Number} level Уровень джедая.
  */
 function Jedi (name, level) {
-  // Ваш код здесь...
+    this.name = name;
+    this.level = level;
+    this.sideOfForce = 'light';
 }
 
 /**
@@ -62,8 +71,11 @@ function Jedi (name, level) {
  * @param {String} name Имя ситха.
  * @param {Number} level Уровень ситха.
  */
-// Ваш код здесь...
-
+function Sith (name, level) {
+    this.name = name;
+    this.level = level;
+    this.sideOfForce = 'dark';
+}
 
 /**
  * Метод произнесения кодекса.
@@ -72,7 +84,6 @@ function Jedi (name, level) {
  * @name Warrior.getCode
  * @return {String} Кодекс воина.
  */
-// Ваш код здесь...
 
 
 /**
@@ -96,7 +107,17 @@ function Jedi (name, level) {
  * @throws Error("Invalid argument")
  * Если призываемый объект не является ситхом, выкидывается исключение.
  */
-// Ваш код здесь...
+Jedi.prototype.toLightSide = function(sith) {
+    if (sith instanceof Sith) {
+        if(this.level>sith.level){
+            sith.sideOfForce = 'light';
+        } else if(this.level<sith.level) {
+            this.sideOfForce = 'dark';
+        }
+    } else {
+        throw Error("Invalid argument");
+    }
+}
 
 
 /**
@@ -117,4 +138,14 @@ function Jedi (name, level) {
  * @throws Error("Invalid argument")
  * Если призываемый объект не является джедаем, выкидывается исключение.
  */
-// Ваш код здесь...
+Sith.prototype.toDarkSide = function(jedi) {
+    if (jedi instanceof Jedi) {
+        if(this.level>jedi.level){
+            jedi.sideOfForce = 'dark';
+        } else if(this.level<jedi.level) {
+            this.sideOfForce = 'light';
+        }
+    } else {
+        throw Error("Invalid argument");
+    }
+}
