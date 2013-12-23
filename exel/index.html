@@ -1,0 +1,140 @@
+<html>
+	<head>
+		<style>
+			#exel {
+				width: 100%;
+			}
+			#exel tr {
+				min-height: 50px;
+				height: 50px;
+			}
+			#exel td {
+				min-width: 100px;
+				max-width: 50%;
+				border: 2px solid black;
+			}
+			#exel input[type=text] {
+				width: 100%;
+				height: 100%;
+				padding: 0px;
+				outline: 0px;
+			}
+		</style>
+		<script>
+			function Exel(el){
+				var o = {
+					el: document.getElementById(el).getElementsByTagName('tbody')[0],
+					tEl: false,
+					te: true
+				};
+				this.getO = function(){return o;};
+				this.show = function(){
+					var el = o.el;
+					console.log(o);
+					for(var i = 0; i < o.row; i++){
+						var a = document.createElement('tr');
+						el.appendChild(a);
+					}
+				};
+				this.save = function(){
+					var text = o.tEl.getElementsByTagName('input')[0].value;
+					o.tEl.innerHTML = text;
+					o.te = true;
+				};
+				this.edit = function(e){
+					if(o.tEl === e.target){
+						if(o.te){
+							var text = o.tEl.innerText;
+							var area = document.createElement('input');
+							area.type = 'text';
+							var l = document.getElementsByTagName('tr')[0].getElementsByTagName('td').length;
+							o.tEl.style.width = (100/l) + '%';
+							o.tEl.innerHTML = '';
+							area.value = text;
+							o.tEl.appendChild(area);
+							area.focus();
+							area.addEventListener('blur', exel.save);
+							o.te = false;
+						}
+					} else {
+						if(o.te){
+							o.tEl = e.target;
+						}
+					}
+				};
+				this.print = function(){
+					var i,
+						j,
+						tr = o.el.getElementsByTagName('tr'),
+						td,
+						res='',
+						temp;
+					for(i = 0; i < tr.length; i++){
+						temp = '';
+						td = tr[i].getElementsByTagName('td');
+						for(j = 0; j < td.length; j++){
+							temp += '"'+td[j].innerText.replace(/"/g, '""') + '";';
+						}
+						res += temp + '\n';
+					}
+					console.log(res);
+					var x = document.getElementById('output');
+					x.value = res;
+					x.select();
+				}
+				function addEvent(){
+					var i,
+						tds = o.el.getElementsByTagName('td'),
+						l = tds.length;
+					for(i = 0; i < l; i++){
+						tds[i].addEventListener('click', exel.edit);
+					}
+				}
+				this.addRow = function(){
+					var i,
+						j = o.el.getElementsByTagName('tr'),
+						l = j.length,
+						td;
+					
+					for(i = 0; i < l; i++){
+						td = document.createElement('td');
+						//td.style.minWidth = '100px';
+						//td.style.minHeight = '100px';
+						
+						j[i].appendChild(td);
+					}
+					addEvent();
+				};
+				this.addCol = function(){
+					var i,
+						j = o.el.getElementsByTagName('tr')[0].getElementsByTagName('td').length,
+						tr = document.createElement('tr'),
+						td;
+					for(i = 0; i < j; i++){
+						td = document.createElement('td');
+						//td.style.minWidth = '100px';
+						//td.style.minHeight = '100px';
+						tr.appendChild(td);
+					}
+					o.el.appendChild(tr);
+					addEvent();
+				};
+				setTimeout(addEvent, 0);
+			}
+			document.addEventListener('DOMContentLoaded', function(){
+				window.exel = new Exel('exel');
+			});
+		</script>
+	</head>
+	<body>
+		<table id="exel">
+			<tr>
+				<td></td>
+			</tr>
+		</table>
+		<input type="button" onclick="exel.addCol();" value="addCol">
+		<input type="button" onclick="exel.addRow();" value="addRow">
+		<input type="button" onclick="exel.print();" value="print"><br>
+		<textarea id="output"></textarea>
+	</body>
+</html>
