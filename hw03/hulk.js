@@ -167,12 +167,20 @@ var hulk = {
 	 		if(this.elem[i].className != '') {
 	 			classes = this.elem[i].className.split(' ');
 	 			for(var j = 0; j < delCls.length; j++) {
-	 				var x = classes.indexOf(delCls[j]);
-	 				if(x != '-1') {
+	 				if(classes.indexOf(delCls[j]) != -1) {
 	 					classes = classes.join(' ').replace(delCls[j], '').split(' ');
 	 				}
 	 			}
-	 			this.elem[i].className = classes.join(' ');
+	 			this.elem[i].className = '';
+	 			for(var j = 0; j < classes.length; j++) {
+	 				if(classes[j] != ''){
+	 					if(this.elem[i].className == '') {
+	 						this.elem[i].className += classes[j];
+	 					}else{
+	 						this.elem[i].className += ' ' + classes[j];
+	 					}
+	 				}
+	 			}
 	 			classes = [];
 	 		}
  		}
@@ -181,22 +189,32 @@ var hulk = {
  	},
 
  	toggleClass: function(clsNames) {
- 		var classes = '';
- 		var curClass = clsNames.split(' ');
- 		var reg;
+ 		
+ 		var classes = [];
+ 		var delCls = clsNames.split(' ');
 
  		for(var i = 0; i < this.elem.length; i++) {
- 			classes = this.elem[i].className;
- 			for(var j = 0; j < curClass.length; j++) {
- 				reg = new RegExp(curClass[j]);
- 				if(reg.test(classes)) {
- 					classes = classes.replace(curClass[j], '');
- 				} else {
- 					classes += ' ' + curClass[j];
- 				}
- 			}
- 			this.elem[i].className = classes;
- 			classes = '';
+	 		if(this.elem[i].className != '') {
+	 			classes = this.elem[i].className.split(' ');
+	 			for(var j = 0; j < delCls.length; j++) {
+	 				if(classes.indexOf(delCls[j]) != -1) {
+	 					classes = classes.join(' ').replace(delCls[j], '').split(' ');
+	 				}else {
+	 					classes.push(' ' + delCls[j]);
+	 				}
+	 			}
+	 			this.elem[i].className = '';
+	 			for(var j = 0; j < classes.length; j++) {
+	 				if(classes[j] != ''){
+	 					if(this.elem[i].className == '') {
+	 						this.elem[i].className += classes[j];
+	 					}else{
+	 						this.elem[i].className += ' ' + classes[j];
+	 					}
+	 				}
+	 			}
+	 			classes = [];
+	 		}
  		}
 
  		return this;
