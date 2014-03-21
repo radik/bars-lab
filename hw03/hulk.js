@@ -3,7 +3,7 @@ var hulk = {
 
  	select: function(selector) {
 
- 		this.elem = document.getElementsByTagName(selector);
+ 		this.elem = document.querySelectorAll(selector);
 
  		return this;
  	},
