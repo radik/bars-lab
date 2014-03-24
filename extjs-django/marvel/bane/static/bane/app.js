@@ -1,5 +1,7 @@
 Ext.application({
-  name: 'HelloExt',
+  name: 'MyApp',
+  appFolder: '/static/bane/app',
+
   launch: function() {
     Ext.create('Ext.container.Viewport', {
       layout: 'fit',
