@@ -37,6 +37,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bane',
+    'library',
+    'rest_framework',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -60,6 +62,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'USER': 'admin',
+        'PASSWORD': 'admin',
+        'HOST': '',
+        'PORT': ''
     }
 }
 
@@ -85,3 +91,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+REST_FRAMEWORK = {
+    'PAGINATE_BY': 25
+}
