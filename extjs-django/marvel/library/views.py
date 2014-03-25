@@ -3,6 +3,15 @@ from rest_framework import viewsets
 from models import Book, Author, Genre
 from serializers import UserSerializer, GroupSerializer, BookSerializer, AuthorSerializer, GenreSerializer
 
+from django.http import HttpResponse
+from django.template import RequestContext, loader
+
+
+def index(request):
+    template = loader.get_template('library/index.html')
+    context = RequestContext(request, {})
+    return HttpResponse(template.render(context))
+
 
 class UserViewSet(viewsets.ModelViewSet):
 
@@ -37,7 +46,7 @@ class GenreViewSet(viewsets.ModelViewSet):
     API endpoint that allows genres to be viewed or edited.
     """
     queryset = Genre.objects.all()
-    serializer_class = GroupSerializer
+    serializer_class = GenreSerializer
 
 
 class AuthorViewSet(viewsets.ModelViewSet):
