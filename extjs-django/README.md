@@ -1,6 +1,11 @@
 ExtJs 4 + Django
 ================
 
+Инструкции:
+
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/gYHZNbBasC4/0.jpg)](http://www.youtube.com/watch?v=gYHZNbBasC4)
+
+
 Зависимости:
 * python >= 2.7
 * pip
@@ -27,4 +32,11 @@ python manage.py syncdb
 python manage.py runserver
 ```
 
-Приложение библиотека будет доступна по адресу http://localhost:8000
+Приложение "Библиотека" будет доступна по адресу http://localhost:8000/library
+
+API можно посмотреть по адресам:
+* http://localhost:8000/library/genres/ - Жанры
+* http://localhost:8000/library/authors/ - Авторы
+* http://localhost:8000/library/books/ - Книги
+
+
