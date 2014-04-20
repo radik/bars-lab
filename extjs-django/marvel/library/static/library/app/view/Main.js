@@ -21,6 +21,7 @@ Ext.define('Lib.view.Main', {
     items: [{
       title: 'Жанры',
       xtype: 'grid',
+      itemId: 'genres',
       store: 'Genre',
       columns: [{
         text: 'Название',
@@ -32,9 +33,13 @@ Ext.define('Lib.view.Main', {
         dock: 'top',
         items: [{
           xtype: 'button',
+          action: 'add',
           text: 'Добавить'
         }]
       }]
+    }, {
+      title: 'Авторы',
+      itemId: 'authors'
     }]
   }]
 });

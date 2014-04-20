@@ -1,7 +1,7 @@
 Ext.application({
   name: 'Lib',
   appFolder: '/static/library/app',
-  controllers: ['Genre'],
+  controllers: ['Main', 'Genre'],
   views: ['Main'],
   models: ['Genre'],
 

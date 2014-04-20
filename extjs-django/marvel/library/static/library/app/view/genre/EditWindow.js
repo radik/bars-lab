@@ -4,17 +4,27 @@ Ext.define('Lib.view.genre.EditWindow', {
     'Ext.button.Button',
     'Ext.form.field.Text'
   ],
-  width: 400,
-  height: 300,
+  alias: 'widget.genreeditwin',
+  width: 300,
+  modal: true,
+  title: 'Добавление жанра',
   closeAction: 'destroy',
   items: [{
     xtype: 'form',
+    layout: 'form',
+    bodyPadding: '5 5 5',
     items: [{
       xtype: 'textfield',
-      name: 'title'
-    }, {
-      xtype: 'button',
-      text: 'Сохранить'
+      fieldLabel: 'Название',
+      afterLabelTextTpl: '<span style="color:red;font-weight:bold" data-qtip="Required">*</span>',
+      name: 'title',
+      msgTarget: 'side',
+      labelWidth: 75,
+      allowBlank: false
+    }],
+    buttons: [{
+      text: 'Сохранить',
+      action: 'save'
     }]
   }]
 });
