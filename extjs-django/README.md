@@ -27,4 +27,10 @@ python manage.py syncdb
 python manage.py runserver
 ```
 
-Приложение библиотека будет доступна по адресу http://localhost:8000
+Приложение "Библиотека" будет доступна по адресу http://localhost:8000/library
+API можно посмотреть по адресам:
+http://localhost:8000/library/genres/ - Жанры
+http://localhost:8000/library/authors/ - Авторы
+http://localhost:8000/library/books/ - Книги
+
+
