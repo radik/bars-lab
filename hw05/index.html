@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<meta charset="utf-8" />
+	<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<title></title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+    <script src="js/angular.js"></script>
+    <script src="js/my.js"></script>
+	<link href="style.css" rel="stylesheet">
+</head>
+<body ng-controller="ItemsListCtrl" >
+
+<div class="wrapper">
+
+	<header class="header">
+		<div class="logo">
+			<span class="first">fast</span><span class="second">Shop</span>
+		</div>
+	</header><!-- .header-->
+
+	<div class="middle">
+
+		<div class="container">
+			<main class="content">
+				<ul class="items">
+					<li  ng-repeat="it in items">
+						<div class="item" ng-dblclick="push(it)">
+							<img ng-src="{{it.img}}">
+							<div class="item-name">{{it.name}}</div>
+							<div class="item-price">{{it.price}}</div>
+						</div>
+					</li>
+				</ul>
+			</main><!-- .content -->
+		</div><!-- .container-->
+
+		<aside class="right-sidebar">
+			<div class="basket">
+				<div class="basket-title">Корзина</div>
+					<ul>
+					<li  ng-repeat="it in itemsBasket">
+						<div class="item" ng-dblclick="pop(it)">
+							<p>{{it.name}}</p>
+							<p>{{it.price}}</p>
+						</div>
+					</li>
+				</ul>
+				<p>Итого:{{price}}</p>
+			</div>
+		</aside><!-- .right-sidebar -->
+
+	</div><!-- .middle-->
+
+</div><!-- .wrapper -->
+
+</body>
+</html>
