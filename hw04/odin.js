@@ -4,6 +4,42 @@
  * наследовать один класс от другого, создавать экземпляры класса.
  */
 
+<<<<<<< HEAD
+var Odin = {
+  className: undefined,
+
+	define: function(clsName, obj) {
+
+    for(var key in obj.staticMethods) {
+     obj[key] = obj.staticMethods[key];
+    }
+    for(var key in obj.staticFields) {
+      obj[key] = obj.staticFields[key];
+    }
+    window[clsName] = new Object(obj);
+	},
+
+	create: function(clsName, cfg) {
+
+    var newObj = window[clsName];
+    var curObj = new Object();
+
+    for(var key in newObj.fields) {
+      curObj[key] = newObj.fields[key];
+    }
+    for(var key in newObj.methods) {
+      curObj[key] = newObj.methods[key];
+    }
+    for(var key in cfg) {
+      curObj[key] = cfg[key];
+    }
+
+    return curObj;
+	}
+};
+
+=======
+>>>>>>> bars-lab/master
 /**
  * @method Odin.def
  * Объявление класса.
@@ -43,15 +79,25 @@
  *      var myClass = Odin.create('MyClass');
  *      myClass.greeting(); // В консоли должно быть напечатано 'Bonjour, MyClass'
  *
+<<<<<<< HEAD
+ * @param className Имя класса
+ * @param config Объект, содержащий конфигурацию объявляемого класса.
+=======
  * @param {String} className Имя класса
  * @param {Object} config Объект, содержащий конфигурацию объявляемого класса.
+>>>>>>> bars-lab/master
  */
 
 /**
  * @method Odin.create
  * Создание экземпляра класса.
+<<<<<<< HEAD
+ * @param className Имя класса
+ * @params config Объект, содержащий конфигурацию создаваемого экземпляра.
+=======
  * @param {String} className Имя класса
  * @params {Object} config Объект, содержащий конфигурацию создаваемого экземпляра.
+>>>>>>> bars-lab/master
  * При создании объекта будет передан в конструктор класса.
  * @example
  *     Odin.create('MyClass', {name: 'Odin'});

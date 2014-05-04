@@ -39,7 +39,35 @@ Ext.define('Lib.view.Main', {
       }]
     }, {
       title: 'Авторы',
-      itemId: 'authors'
+      xtype: 'grid',
+      itemId: 'autors',
+      store: 'Autor',
+      columns: [
+        {
+          text: 'FirstName',
+          dataIndex: 'first_name',
+          flex:1
+        },
+        {
+          text: 'MiddleName',
+          dataIndex: 'middle_name',
+          flex:1
+        },
+        {
+          text: 'LastName',
+          dataIndex: 'last_name',
+          flex:1
+        }
+      ],
+      dockedItems:[{
+        xtype: 'toolbar',
+        dock: 'top',
+        items: [{
+          xtype: 'button',
+          action: 'addAutor',
+          text: 'Добавить'
+        }]
+      }]
     }]
   }]
 });
