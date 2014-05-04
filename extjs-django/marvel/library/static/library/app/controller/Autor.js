@@ -1,42 +1,42 @@
-Ext.define('Lib.controller.Genre', {
+Ext.define('Lib.controller.Autor', {
   extend: 'Ext.app.Controller',
-  models: ['Genre'],
-  stores: ['Genre'],
-  views: ['genre.EditWindow', 'Main'],
+  models: ['Autor'],
+  stores: ['Autor'],
+  views: ['autor.EditWindow', 'Main'],
   refs: [{
-    selector: 'mainview #genres',
-    ref: 'genresGrid'
+    selector: 'mainview #autors',
+    ref: 'autorsGrid'
   }],
 
   init: function() {
     var me = this;
 
     me.control({
-      '#genres button[action=add]': {
-        click: me.onAddGenreBtnClick
+      '#autors button[action=addAutor]': {
+        click: me.onAddAutorBtnClick
       },
-      'genreeditwin button[action=save]': {
-        click: me.onSaveGenreBtnClick
+      'autoritwin button[action=saveAutor]': {
+        click: me.onSaveAutorBtnClick
       }
     });
 
     me.callParent(arguments);
   },
 
-  onAddGenreBtnClick: function(btn) {
-    Ext.create('Lib.view.genre.EditWindow').show();
+  onAddAutorBtnClick: function(btn) {
+    Ext.create('Lib.view.autor.EditWindow').show();
   },
 
-  onSaveGenreBtnClick: function(btn) {
+  onSaveAutorBtnClick: function(btn) {
     var me = this,
       form = btn.up('form'),
       record;
     if (form.isValid()) {
-      record = Ext.create('Lib.model.Genre', form.getValues());
+      record = Ext.create('Lib.model.Autor', form.getValues());
       record.save({
         callback: function(records, operation, success) {
           if (success) {
-            me.getGenresGrid().getStore().load();
+            me.getAutorsGrid().getStore().load();
             btn.up('window').close();
           } else {
             Ext.MessageBox.alert('Ошибка!', 'Произошла ошибка при сохранении.');

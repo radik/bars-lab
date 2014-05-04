@@ -36,9 +36,12 @@ describe('Odin in action > ', function() {
       },
 
       methods: {
+        test: function(){console.log(this)},
         goTo: function(location) {
           this.currenLocation = location;
-        }
+          console.log(this)
+        },
+        test2: function(){console.log(this)}
       }
     });
   });
@@ -67,8 +70,6 @@ describe('Odin in action > ', function() {
       batMobile = Odin.create('BatMobile', {
         owner: 'Batman'
       });
-
-      spyOn(batMobile, 'goTo');
     });
 
     it('Создание объекта', function() {
@@ -87,12 +88,16 @@ describe('Odin in action > ', function() {
 
     it('Вызов методов экземпляра', function() {
       var location1 = 'Catwoman house',
-        location2 = 'Waynes skyscraper';
+          location2 = 'Waynes skyscraper';
+      batMobile.goTo(location1);
+      batMobile.goTo(location2);
+      expect(batMobile.currenLocation).toEqual(location2);
+
+      spyOn(batMobile, 'goTo');
       batMobile.goTo(location1);
       batMobile.goTo(location2);
       expect(batMobile.goTo).toHaveBeenCalled();
       expect(batMobile.goTo.calls.length).toEqual(2);
-      expect(batMobile.currenLocation).toEqual(location2);
     });
   });
 });

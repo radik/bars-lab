@@ -4,6 +4,7 @@
  * наследовать один класс от другого, создавать экземпляры класса.
  */
 
+<<<<<<< HEAD
 var Odin = {
   className: undefined,
 
@@ -37,6 +38,8 @@ var Odin = {
 	}
 };
 
+=======
+>>>>>>> bars-lab/master
 /**
  * @method Odin.def
  * Объявление класса.
@@ -76,15 +79,25 @@ var Odin = {
  *      var myClass = Odin.create('MyClass');
  *      myClass.greeting(); // В консоли должно быть напечатано 'Bonjour, MyClass'
  *
+<<<<<<< HEAD
  * @param className Имя класса
  * @param config Объект, содержащий конфигурацию объявляемого класса.
+=======
+ * @param {String} className Имя класса
+ * @param {Object} config Объект, содержащий конфигурацию объявляемого класса.
+>>>>>>> bars-lab/master
  */
 
 /**
  * @method Odin.create
  * Создание экземпляра класса.
+<<<<<<< HEAD
  * @param className Имя класса
  * @params config Объект, содержащий конфигурацию создаваемого экземпляра.
+=======
+ * @param {String} className Имя класса
+ * @params {Object} config Объект, содержащий конфигурацию создаваемого экземпляра.
+>>>>>>> bars-lab/master
  * При создании объекта будет передан в конструктор класса.
  * @example
  *     Odin.create('MyClass', {name: 'Odin'});

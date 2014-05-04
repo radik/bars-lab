@@ -1,18 +1,16 @@
 Ext.application({
-    requires: ['Ext.container.Viewport'],
-    name: 'Library',
+  name: 'Lib',
+  appFolder: '/static/library/app',
+  controllers: ['Main', 'Genre', 'Autor'],
+  views: ['Main'],
+  models: ['Genre', 'Autor'],
 
-    appFolder: '/static/library/app',
-    controllers: [
-        'Autors'
-    ],
-
-    launch: function() {
-        Ext.create('Ext.container.Viewport', {
-            layout: 'fit',
-            items: {
-                    xtype: 'autorlist' 
-                }
-        });
-    }
+  launch: function() {
+    Ext.create('Ext.container.Viewport', {
+      layout: 'fit',
+      items: {
+        xtype: 'mainview'
+      }
+    });
+  }
 });
