@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<title></title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<link href="style.css" rel="stylesheet">
+    <script type="text/javascript" src="angular.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+</head>
+
+<body ng-app="shopApp">
+
+<div class="wrapper">
+
+	<header class="header">
+		<div class="logo">
+			<span class="first">fast</span><span class="second">Shop</span>
+		</div>
+	</header><!-- .header-->
+
+	<div class="middle" ng-controller="shopList">
+
+		<div class="container">
+			<main class="content">
+				<ul class="items">
+					<li ng-repeat="item in items">
+						<div class="item" ng-dblclick="add(item)">
+							<img src="{{ item.img }}" class="{{ item.class }}">
+							<div class="item-name">{{item.name}}</div>
+							<div class="item-price">{{ item.price }}</div>
+						</div>
+					</li>
+				</ul>
+			</main><!-- .content -->
+		</div><!-- .container-->
+
+		<aside class="right-sidebar">
+			<div class="basket">
+				<div class="basket-title">Корзина</div>
+				<ul class="basket-content">
+					<li ng-repeat="item in cart" ng-dblclick="remove(item)">
+						<div class="basket-name">{{ item.name }}</div>
+						<div class="basket-price">{{ item.ammount }} X 33 990 руб.</div>
+					</li>
+				</ul>
+				<hr/>
+				<div class="basket-sum">Итого: {{ cartSum }} руб.</div>
+			</div>
+		</aside><!-- .right-sidebar -->
+
+	</div><!-- .middle-->
+
+</div><!-- .wrapper -->
+
+</body>
+</html>
