@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Задание 1. Реализовать конструктор класса Warrior, который в качестве параметров
  * принимает имя и уровень воина. У созданного при помощи этого конструктора объекта
  * должны имя и уровень должны быть доступны в качестве полей экземпляра.
@@ -17,10 +17,13 @@
  * @param {Number} level Уровень воина.
  */
 function Warrior(name, level){
-  // Ваш код здесь...
   this.name = name;
   this.level = level;
+  this.getCode = function(){
+  return "Кодекс воина";
+  }
 }
+
 
 /**
  * Задание 2. Добавить метод attack нашему воину.
@@ -36,7 +39,7 @@ function Warrior(name, level){
  * @return {Number} Урон, наносимой атакой.
  */
 Warrior.prototype.attack = function() {
-  // Ваш код здесь...
+return this.level * 0.1;
 };
 
 /**
@@ -53,8 +56,34 @@ Warrior.prototype.attack = function() {
  * @param {String} name Имя джедая.
  * @param {Number} level Уровень джедая.
  */
+ 
+ Jedi.prototype = new Warrior();
+ 
 function Jedi (name, level) {
-  // Ваш код здесь...
+  this.level = level;
+  this.name = name;
+  this.sideOfForce = "light";
+   this.getCode = function(){
+  return "Нет волнения — есть покой...";
+  }
+   this.toLightSide = function(sith){
+  if(sith instanceof Sith)
+  {
+  if(this.level > sith.level)
+  {
+  sith.sideOfForce = "light";
+  }
+  else
+  {
+  sith.toDarkSide(this);
+  }
+  }
+  else
+  {
+  throw Error("Invalid argument");
+  }
+ 
+  }
 }
 
 /**
@@ -62,8 +91,33 @@ function Jedi (name, level) {
  * @param {String} name Имя ситха.
  * @param {Number} level Уровень ситха.
  */
-// Ваш код здесь...
+Sith.prototype = new Warrior();
 
+function Sith(name, level){
+this.level = level;
+this.name = name;
+this.sideOfForce = "dark";
+this.getCode = function(){
+  return "Спокойствие — ложь, есть только страсть...";
+  }
+  
+ this.toDarkSide = function(jedi)
+ {
+ if(jedi instanceof Jedi)
+ {
+ if(this.level > jedi.level){
+ jedi.sideOfForce = "dark";
+ }
+ else{
+ jedi.toLightSide(this);
+ }
+ }
+ else{
+ throw Error("Invalid argument");
+ }
+ }
+  
+}
 
 /**
  * Метод произнесения кодекса.
@@ -96,7 +150,8 @@ function Jedi (name, level) {
  * @throws Error("Invalid argument")
  * Если призываемый объект не является ситхом, выкидывается исключение.
  */
-// Ваш код здесь...
+
+ 
 
 
 /**

@@ -25,6 +25,44 @@
  * @return {String} отформатированная строка.
  */
 
+ function format(token, values)
+ {
+
+ val1 = values.split(",");
+ 
+ val2 = token.split(",");
+ 
+ var index = 0;
+  
+  var newtoken = null;
+  
+  if(token.search("{0}")){
+  return "without wildcards";
+  }
+  
+ val3 =  val2[1].split(" ");
+ 
+  
+ while(index < val3.length)
+ {
+ var re = "{" index + "}" + "/g";
+ 
+ if(newtoken === null)
+ {
+ newtoken = token.replace(re, val1[index]);
+ }
+ else
+ { 
+ newtoken = newtoken.replace(re, val1[index]);
+ }
+ index++;
+ }
+ return newtoken;
+ 
+ }
+ 
+ 
+ 
 /**
  * Задание 2. Создать функцию repeat.
  *
@@ -44,6 +82,35 @@
  * @return {String} Строка с повотрениями.
  */
 
+ function repeat(a, b, c)
+ {
+ var str = "";
+ 
+ if(c != null)
+ {
+ var d = a + c;
+ }
+  else
+  {
+  d = a;
+  }
+ 
+ while(b > 0)
+ {
+    if(b == 1)
+	{
+    str = str + a;
+    }
+	else
+	{
+    str = str + d;
+    }
+    b--;
+ }
+ return str;
+}
+ 
+ 
 /**
  * Задание 3. Создать функцию toGetParams, формирующую из
  * объекта строку параметров для GET-запроса.
@@ -57,6 +124,25 @@
  * @return {String} строка параметров.
  */
 
+ function toGetParams(obj)
+ {
+ 
+ String getR = null;
+ 
+ for(key in obj)
+ {
+ 
+ if(getR == null){
+ getR =  key + "=" + obj[key];
+ }
+ else{
+ getR = getR + "&" + key + "=" + obj[key];
+ }
+ }
+ return getR;
+ 
+ }
+ 
 /**
  * Задание 4. Создать функцию formatUrl, формирующую из базового url и объекта
  * строку GET-запроса.
@@ -73,6 +159,28 @@
  * @return {String} сформированный url.
  */
 
+ 
+ function formatUrl(url, obj)
+ {
+ 
+ var getR = null;
+ 
+ url = url + "?";
+ 
+ for(key in obj)
+ {
+ if(getR === null)
+ {
+ key + obj[key];
+ }else
+ {
+ getR = getR + "&" + key + "=" + obj[key];
+ }
+ }
+ 
+ return url + getR;
+ }
+ 
 /**
  * Задание 5. Создать функцию startsWith, возвращающая true, если строка, переданная
  * в качестве первого аргумента начинается со строки, переданной в качестве второго аргумента,
@@ -91,6 +199,20 @@
  * @return {Boolean} Результат проверки.
  */
 
+ function startsWith(str, prefix)
+ {
+ if(str.indexOf(prefix) === 0)
+ {
+ return true;
+ }
+ else
+ {
+ return false;
+ }
+ }
+ 
+ 
+ 
 /**
  * Задание 6. Создать функцию endsWith, возвращающая true, если строка, переданная
  * в качестве первого аргумента оканчивается на строку, переданную в качестве второго аргумента,
@@ -108,3 +230,23 @@
  *
  * @return {Boolean} Результат проверки.
  */
+ 
+ 
+ 
+ function(str, suffix)
+ {
+ 
+ var index = suffix.length;
+ 
+ if(substring(str.length - index) === suffix){
+ return true;
+ }
+ else
+ {
+return false;
+ }
+ 
+ }
+ 
+ 
+ 
